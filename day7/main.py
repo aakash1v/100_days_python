@@ -1,7 +1,8 @@
 import hangman_words
 import hangman_art
 import random
-
+import os
+clear = lambda : os.system('clear')
 
 the_word = random.choice(hangman_words.word_list)
 n = len(the_word)
@@ -11,6 +12,7 @@ lives = 6
 
 
 #testing ..
+clear()
 print(f'Psst, the solution is {the_word}.')
 end_of_game = False
 print(hangman_art.logo)

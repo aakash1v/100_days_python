@@ -1,5 +1,8 @@
 import random
 from art import logo
+import os
+
+clear = lambda : os.system('clear')
 
 EASY_LEVEL_TURN = 10
 HARD_LEVEL_TURN = 5
@@ -31,6 +34,7 @@ def check_answer(turns,number,secret_number):
     
 
 def game():
+    clear()
     global turns
     print(logo)
     print("I am thinking about the number ")
@@ -57,3 +61,6 @@ def game():
         print("You win!!")
 
 game()
+# asking user for playing one more time...
+while input("Do u want to continue ??").lower().startswith('y'):
+    game()

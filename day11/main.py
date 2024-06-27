@@ -39,6 +39,7 @@ def compare(user_score,computer_score):
     else:
         return "You lose"
 def play_game():
+    clear()
 
     print(art.logo)
 
@@ -79,6 +80,5 @@ def play_game():
 
 play_game()
 while input("Do you want to play a game of BlackJack ? type 'y' or 'n':") == 'y':
-    clear()
     play_game()
 
