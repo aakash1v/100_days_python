@@ -1,5 +1,5 @@
 from question_model import Question
-from data import question_data
+from data2 import question_data
 from quiz_brain import QuizBrain
 from os import system
 from art import logo
