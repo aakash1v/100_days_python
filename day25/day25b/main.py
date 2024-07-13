@@ -15,9 +15,12 @@ state_data.set_index('state',inplace=True)
 all_states = state_data.index.to_list()
 
 def generate_missed_state():
-    for state in all_states:
-        if state not in gussed_state:
-            not_guessed.append(state)
+
+    #not_gussed_state = []
+    #for state in all_states:
+    #    if state not in gussed_state:
+    #        not_guessed.append(state)
+    not_guessed = [state for state in all_states if state not in gussed_state ]
     new_data = pandas.DataFrame(not_guessed)
 
 
@@ -26,8 +29,7 @@ def generate_missed_state():
     #data = pandas.DataFrame(missed_state)
     new_data.to_csv('states_to_learn.csv')
     
-gussed_state = []
-not_guessed =[]
+gussed_state =[]
 
 while len(gussed_state) <50:
 
