@@ -1,22 +1,40 @@
-#list comprehension
+student_dict = {
+    "student": ["Angela", "James", "Lily"], 
+    "score": [56, 76, 98]
+}
 
-numbers = [1,2,3]
-new_list = [n+1 for n in numbers]
-print(new_list)
+#Looping through dictionaries:
+for (key, value) in student_dict.items():
+    #Access key and value
+    pass
 
-name = 'Angela'
-new_list = [letter for letter in name]
-print(new_list)
+import pandas
+student_data_frame = pandas.DataFrame(student_dict)
+
+#Loop through rows of a data frame
+for (index, row) in student_data_frame.iterrows():
+    #Access index and row
+    #Access row.student or row.score
+    pass
+
+# Keyword Method with iterrows()
+# {new_key:new_value for (index, row) in df.iterrows()}
+
+#TODO 1. Create a dictionary in this format:
+{"A": "Alfa", "B": "Bravo"}
+data = pandas.read_csv('nato_phonetic_alphabet.csv')
+
+phonetic_dict  = {row.letter: row.code for index,row in data.iterrows() }
 
 
-new_list = [2*i for i in range(1,6)]
-print(new_list)
+#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-names = ['Alex', 'Beth', 'Caroline', 'Dave', 'Eleanor', 'Freddie']
-short_name = [name for name in names if len(name) <5]
-print(short_name)
+word = input("Enter your word :").upper()
+
+output_list = [ phonetic_dict[letter] for letter in word ]
+print(output_list)
 
 
 
-long_capital_name = [name.upper() for name in names if len(name) >4]
-print(long_capital_name)
+
+
