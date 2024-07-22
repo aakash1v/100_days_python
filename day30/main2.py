@@ -2,28 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
-import json
-
-# ---------------------------- FIND PASSWORD  ------------------------------- #
-def find_password():
-
-    website = website_entry.get()
-    try:
-        with open('data.json', mode='r') as file_data:
-            data_dict = json.load(file_data)
-
-    except FileNotFoundError:
-        messagebox.showinfo(title='Error', message = 'No Data File found')
-
-    else:
-        if website in data_dict:
-            email = data_dict[website]['email']
-            password = data_dict[website]['password']
-            messagebox.showinfo(title=website, message = f"Email: {email}\nPassword: {password}")
-        else:
-            messagebox.showinfo(title='Error', message = f'There ar no details for {website} exists.')
-
-
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
@@ -50,37 +28,18 @@ def save_password():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
-
-    new_data = {website:{
-        'email':email,
-        'password':password,
-        }
-    }
-
     if len(website)==0 or len(password) ==0:
         messagebox.showinfo(title='Oops', message = "Please make sure you haven't left any fields empty ")
-    else:
-
-        try:
-            with open('data.json', mode='r') as data_file:
-                #reading old data
-                data = json.load(data_file)
-
-        except FileNotFoundError:
-            with open('data.json',mode='w') as data_file:
-                json.dump(new_data, data_file,indent =4)
-
-        else:
-            #update the old data with new data
-            data.update(new_data)
-            with open('data.json',mode='w') as data_file:
-
-                #saving updated data
-                json.dump(data, data_file, indent=4)
-
-        finally:
-            website_entry.delete(0,END)
-            password_entry.delete(0,END)
+        return 
+    
+    is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password}\nIs it ok to save?")
+    if is_okay:
+        with open('data.txt', mode='a') as file:
+            record = f"{website} | {email} | {
+            password} \n"
+            file.write(record)
+        website_entry.delete(0,END)
+        password_entry.delete(0,END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -102,11 +61,11 @@ email.grid(column=0, row=2)
 password.grid(column=0, row=3)
 
 #Entries..
-website_entry = Entry()
+website_entry = Entry(width=35)
 website_entry.focus()
-website_entry.grid(row=1, column=1)
+website_entry.grid(row=1, column=1, columnspan=2)
 
-email_entry = Entry(width = 42)
+email_entry = Entry(width=35)
 email_entry.grid(row=2, column=1, columnspan=2)
 email_entry.insert(0, 'aakashkumarpy@gmail.com')
 password_entry = Entry(width=21)
@@ -119,8 +78,8 @@ generate.grid(column=2, row =3)
 add_button = Button(text='Add', width=35, command=save_password)
 add_button.grid(row=4, column=1, columnspan =2)
 
-search_button = Button(text = 'Search', command = find_password)
-search_button.grid(row =1, column = 2)
+
+
 
 
 
