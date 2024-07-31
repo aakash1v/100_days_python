@@ -32,7 +32,7 @@ def is_night():
     parameters = {
         'lat': MY_LAT,
         'lng': MY_LONG,
-        'formatted' :0
+        'formatted': 0
     }
 
 
