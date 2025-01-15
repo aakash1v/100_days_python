@@ -19,7 +19,6 @@ Bootstrap5(app)
 ckeditor = CKEditor(app)
 
 
-
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
